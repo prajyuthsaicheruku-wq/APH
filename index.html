@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>APH Innovacraft | Laptops & Services</title>
+
+<style>
+/* ===== Global Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #333;
+}
+
+/* ===== Navbar ===== */
+header {
+  background-color: #002b5c;
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Search input in header */
+.search-input {
+  width: 360px;
+  max-width: 40vw;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  outline: none;
+}
+
+.search-input::placeholder { color: rgba(255,255,255,0.75); }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #00aaff;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  background-color: #e9f2ff;
+  color: #002b5c;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background-color: #0088cc;
+}
+
+/* ===== Shop Section ===== */
+.shop {
+  padding: 50px 40px;
+  text-align: center;
+}
+
+.shop h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin: 15px 0 5px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  padding: 0 10px 10px;
+}
+
+.price {
+  color: #002b5c;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.add-to-cart {
+  background-color: #002b5c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: #004080;
+}
+
+/* ===== Contact Section ===== */
+.contact {
+  background-color: #002b5c;
+  color: white;
+  padding: 50px 40px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.contact p {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+/* ===== Modal (Login/Signup) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 350px;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  background-color: #002b5c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #555;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: #001d3d;
+  color: #aaa;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* cart button and modal styles */
+.cart-btn{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:8px 12px;border-radius:6px;cursor:pointer;margin-left:12px}
+.cart-badge{background:#ff6b6b;color:#fff;padding:2px 8px;border-radius:999px;margin-left:8px;font-weight:700}
+.cart-modal{display:none;position:fixed;right:18px;bottom:84px;width:340px;max-height:60vh;background:white;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.2);overflow:auto;padding:12px;z-index:120}
+.cart-modal h4{margin:0 0 8px}
+.cart-item{display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #eee}
+.cart-item img{width:56px;height:40px;object-fit:cover;border-radius:6px}
+.cart-item .meta{flex:1}
+.cart-item .meta .title{font-weight:600}
+.cart-item .meta .price{color:#002b5c;font-weight:700}
+.qty-controls{display:flex;gap:6px;align-items:center}
+.qty-controls button{padding:4px 8px;border-radius:4px;border:1px solid #ddd;background:#f6f6f6;cursor:pointer}
+.cart-empty{color:#666;text-align:center;padding:18px 0}
+</style>
+</head>
+
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <h1>APH Innovacraft</h1>
+    <input id="siteSearch" class="search-input" type="search" placeholder="Search products (e.g. Dell, SSD, 14\")" aria-label="Search products">
+    <button id="cartBtn" class="cart-btn" aria-label="Open cart">Cart <span id="cartCount" class="cart-badge">0</span></button>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#shop">Laptops</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" id="loginBtn">Login</a></li>
+        <li><a href="#" id="signupBtn">Signup</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="MacBook Symbol">
+    <h2>APH INNOVACRAFT MANUFACTURING & ELECTRONICS</h2>
+    <p>High-performance laptops designed for work, creativity & innovation.</p>
+    <button onclick="window.location='#shop'">Explore Laptops</button>
+  </section>
+
+  <!-- ===== Laptops Section ===== -->
+  <section class="shop" id="shop">
+    <h2>Our Featured Laptops</h2>
+    <div class="products-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="APH Business 14">
+        <h3>macbook m3</h3>
+        <p>14" FHD | Intel Core 8 | 16GB RAM | 512GB SSD</p>
+        <div class="price">₹89,900</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80" alt="APH Pro 14">
+        <h3>keyboard</h3>
+        <p>14" OLED | Intel Core i7 | 32GB RAM | 1TB SSD</p>
+        <div class="price">₹1,29,900</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?auto=format&fit=crop&w=800&q=80" alt="APH Ultra 13">
+        <h3>DELL G15</h3>
+        <p>13.3" Thin & Light | Core 10 | 16GB | 512GB SSD</p>
+        <div class="price">₹1,19,900</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80" alt="ASUS Gaming Laptop">
+
+        <h3>macbook pro m4</h3>
+        <p>15.6" 2K Display | Ryzen 7 | 32GB RAM | 1TB SSD</p>
+        <div class="price">₹1,49,900</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section class="contact" id="contact">
+    <h2>Contact & Support</h2>
+    <p>📍 Locations: Hyderabad | Bengaluru | Chennai</p>
+    <p>📞 Support: +91 98765 43210</p>
+    <p>✉️ Email: APH@aphinnovacraft.com</p>
+    <p>⭐ Ratings: 4.8 / 5 (based on 2,500+ reviews)</p>
+  </section>
+
+  <!-- ===== Login Modal ===== -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close" id="closeLogin">&times;</span>
+      <h3>Login</h3>
+      <input type="email" placeholder="Email" id="loginEmail" required />
+      <input type="password" placeholder="Password" id="loginPassword" required />
+      <button id="loginSubmit">Login</button>
+      <p style="margin-top:10px;">Don’t have an account? <a href="#" id="openSignup">Sign up</a></p>
+    </div>
+  </div>
+
+  <!-- ===== Signup Modal ===== -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close" id="closeSignup">&times;</span>
+      <h3>Sign Up</h3>
+      <input type="text" placeholder="Full Name" id="signupName" required />
+      <input type="email" placeholder="Email" id="signupEmail" required />
+      <input type="password" placeholder="Password" id="signupPassword" required />
+      <button id="signupSubmit">Sign Up</button>
+      <p style="margin-top:10px;">Already have an account? <a href="#" id="openLogin">Login</a></p>
+    </div>
+  </div>
+
+  <!-- ===== Cart Modal ===== -->
+  <div class="cart-modal" id="cartModal" aria-hidden="true">
+    <h4>Your Cart</h4>
+    <div id="cartItems"></div>
+    <div id="cartTotal" style="margin-top:10px;font-weight:700;color:#002b5c"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+      <button id="checkoutBtn" style="background:#002b5c;color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer">Checkout</button>
+      <button id="closeCart" style="background:#f3f4f6;border:0;padding:8px 12px;border-radius:6px;cursor:pointer">Close</button>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    © 2025 APH Innovacraft. All Rights Reserved.
+  </footer>
+
+  <!-- ===== JavaScript ===== -->
+  <script>
+    // Modal logic
+    const loginBtn = document.getElementById("loginBtn");
+    const signupBtn = document.getElementById("signupBtn");
+    const loginModal = document.getElementById("loginModal");
+    const signupModal = document.getElementById("signupModal");
+    const closeLogin = document.getElementById("closeLogin");
+    const closeSignup = document.getElementById("closeSignup");
+    const openSignup = document.getElementById("openSignup");
+    const openLogin = document.getElementById("openLogin");
+
+    loginBtn.onclick = () => (loginModal.style.display = "flex");
+    signupBtn.onclick = () => (signupModal.style.display = "flex");
+    closeLogin.onclick = () => (loginModal.style.display = "none");
+    closeSignup.onclick = () => (signupModal.style.display = "none");
+    openSignup.onclick = () => {
+      loginModal.style.display = "none";
+      signupModal.style.display = "flex";
+    };
+    openLogin.onclick = () => {
+      signupModal.style.display = "none";
+      loginModal.style.display = "flex";
+    };
+
+    window.onclick = (event) => {
+      if (event.target === loginModal) loginModal.style.display = "none";
+      if (event.target === signupModal) signupModal.style.display = "none";
+    };
+
+    // Mock Signup/Login Logic
+    document.getElementById("signupSubmit").onclick = () => {
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+      localStorage.setItem("user", JSON.stringify({ email, password }));
+      alert("Signup successful!");
+      signupModal.style.display = "none";
+    };
+
+    document.getElementById("loginSubmit").onclick = () => {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user && user.email === email && user.password === password) {
+        alert("Login successful!");
+        loginModal.style.display = "none";
+      } else {
+        alert("Invalid credentials!");
+      }
+    };
+
+    // CART: persistent cart, add/remove/qty
+    (function(){
+      const CART_KEY = 'aph_cart_v1';
+      let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+      const cartBtn = document.getElementById('cartBtn');
+      const cartCount = document.getElementById('cartCount');
+      const cartModal = document.getElementById('cartModal');
+      const cartItemsEl = document.getElementById('cartItems');
+      const cartTotalEl = document.getElementById('cartTotal');
+      const closeCart = document.getElementById('closeCart');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      function save(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+      function updateCount(){ const total = cart.reduce((s,i)=>s+i.qty,0); cartCount.textContent = total; }
+
+      function formatPrice(p){ return (typeof p === 'number') ? '₹' + p.toLocaleString() : p; }
+
+      function renderCart(){
+        cartItemsEl.innerHTML = '';
+        if(cart.length === 0){ cartItemsEl.innerHTML = '<div class="cart-empty">Your cart is empty</div>'; cartTotalEl.textContent = ''; return; }
+        let total = 0;
+        cart.forEach((it, idx)=>{
+          total += it.price * it.qty;
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <img src="${it.img||''}" alt="${it.name}">
+            <div class="meta"><div class="title">${it.name}</div><div class="price">${formatPrice(it.price)}</div></div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <div class="qty-controls">
+                <button data-idx="${idx}" class="dec">−</button>
+                <div style="min-width:24px;text-align:center">${it.qty}</div>
+                <button data-idx="${idx}" class="inc">+</button>
+              </div>
+              <button data-idx="${idx}" class="remove" style="background:transparent;border:0;color:#d00;cursor:pointer">Remove</button>
+            </div>
+          `;
+          cartItemsEl.appendChild(div);
+        });
+        cartTotalEl.textContent = 'Total: ' + formatPrice(total);
+
+        // wire controls
+        cartItemsEl.querySelectorAll('.inc').forEach(b=>{ b.addEventListener('click', ()=>{ const i=Number(b.dataset.idx); cart[i].qty++; save(); renderCart(); updateCount(); }); });
+        cartItemsEl.querySelectorAll('.dec').forEach(b=>{ b.addEventListener('click', ()=>{ const i=Number(b.dataset.idx); if(cart[i].qty>1) cart[i].qty--; else cart.splice(i,1); save(); renderCart(); updateCount(); }); });
+        cartItemsEl.querySelectorAll('.remove').forEach(b=>{ b.addEventListener('click', ()=>{ const i=Number(b.dataset.idx); cart.splice(i,1); save(); renderCart(); updateCount(); }); });
+      }
+
+      // open/close handlers
+      cartBtn.addEventListener('click', ()=>{ cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block'; cartModal.setAttribute('aria-hidden', cartModal.style.display === 'none'); renderCart(); });
+      closeCart.addEventListener('click', ()=>{ cartModal.style.display = 'none'; cartModal.setAttribute('aria-hidden','true'); });
+
+      checkoutBtn.addEventListener('click', ()=>{
+        if(cart.length === 0){ alert('Cart is empty'); return; }
+        const summary = cart.map(i=>`${i.name} x${i.qty} — ${formatPrice(i.price*i.qty)}`).join('\n');
+        alert('Checkout (demo)\n' + summary + '\nTotal: ' + formatPrice(cart.reduce((s,i)=>s+i.price*i.qty,0)));
+      });
+
+      // wire Add to Cart buttons (use existing product markup)
+      document.querySelectorAll('.add-to-cart').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const card = btn.closest('.card');
+          const name = (card.querySelector('h3')||{textContent:''}).textContent.trim();
+          const priceText = (card.querySelector('.price')||{textContent:'0'}).textContent.replace(/[₹,\s]/g,'')
+          const price = Number(priceText) || 0;
+          const img = card.querySelector('img')?.src || '';
+          // find existing
+          let found = cart.find(x=>x.name === name && x.price === price);
+          if(found) found.qty++;
+          else cart.push({name,price,qty:1,img});
+          save(); updateCount(); renderCart();
+          // feedback
+          btn.textContent = 'Added'; setTimeout(()=>btn.textContent='Add to Cart',700);
+        });
+      });
+
+      // initialize
+      updateCount(); renderCart();
+    })();
+
+    // Search: filter visible product cards (main products-grid and featured lists)
+    (function(){
+      const input = document.getElementById('siteSearch');
+      if(!input) return;
+      function normalize(s){ return (s||'').toString().toLowerCase(); }
+      function filterCards(q){
+        const ql = q.trim().toLowerCase();
+        const selectors = ['.products-grid .card', '.product-lists .card'];
+        let anyVisible = false;
+        selectors.forEach(sel=>{
+          document.querySelectorAll(sel).forEach(card=>{
+            const title = normalize(card.querySelector('h3')?.textContent || card.querySelector('h4')?.textContent);
+            const desc = normalize(card.querySelector('p')?.textContent);
+            if(ql === '' || title.includes(ql) || desc.includes(ql)){
+              card.style.display = '';
+              anyVisible = true;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+        // show no results message
+        let noEl = document.getElementById('noResultsMsg');
+        if(!anyVisible && ql !== ''){
+          if(!noEl){ noEl = document.createElement('div'); noEl.id='noResultsMsg'; noEl.style.color='#555'; noEl.style.marginTop='12px'; noEl.textContent = 'No products match your search.'; const container = document.querySelector('.shop'); if(container) container.appendChild(noEl);
+          }
+        } else if(noEl){ noEl.remove(); }
+      }
+
+      input.addEventListener('input', function(e){ filterCards(this.value); });
+      // optional: allow Enter to focus first visible product
+      input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ const first = document.querySelector('.products-grid .card:not([style*="display: none"]), .product-lists .card:not([style*="display: none"])'); if(first) first.scrollIntoView({behavior:'smooth',block:'center'}); } });
+    })();
+
+  </script>
+</body>
+</html>
